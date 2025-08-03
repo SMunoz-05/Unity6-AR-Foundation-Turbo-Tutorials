@@ -1,0 +1,2 @@
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/CMakeLists.txt
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/CMakeLists.txt

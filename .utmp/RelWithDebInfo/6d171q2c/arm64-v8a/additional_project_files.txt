@@ -1,0 +1,17 @@
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/GAToUnityCallbacks.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/MacroEnd.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/MacroHeaderBegin.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/MacroSourceBegin.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UGAApplication.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UGAConfiguration.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UGADebug.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UGAEvents.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UGAInput.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UGASoftKeyboard.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UGASoftKeyboardCallbacks.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UGATypes.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UGAVersion.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UnityToGACallbacks.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UnityToGAConfigurationCallbacks.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UnityToGAKeyEventCallbacks.h
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/UnityToGAMotionEventCallbacks.h

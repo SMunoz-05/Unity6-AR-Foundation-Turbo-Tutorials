@@ -1,0 +1,1 @@
+/Volumes/TobiExt/Unity/Projects/Unity6_Tutorials/1_Setup/AR Foundation Setup/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/695k4v63/obj/arm64-v8a
