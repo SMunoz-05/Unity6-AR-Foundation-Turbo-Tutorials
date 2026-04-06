@@ -23,6 +23,15 @@ public class ARFurnitureManager : MonoBehaviour
                 PlaceOrMoveObject(touch.position);
             }
         }
+        // Detectar clic en el editor (PC)
+        else if (Input.GetMouseButtonDown(0))
+        {
+            // Evitar que el clic atraviese los botones de la UI
+            if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            {
+                PlaceOrMoveObject(Input.mousePosition);
+            }
+        }
     }
 
     void PlaceOrMoveObject(Vector2 touchPosition)
