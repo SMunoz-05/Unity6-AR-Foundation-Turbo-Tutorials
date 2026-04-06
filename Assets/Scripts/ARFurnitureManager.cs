@@ -7,68 +7,100 @@ using UnityEngine.XR.ARSubsystems;
 public class ARFurnitureManager : MonoBehaviour
 {
     [SerializeField] private ARRaycastManager raycastManager;
-    [SerializeField] private GameObject[] furniturePrefabs; // Lista de tus muebles (Silla, Mesa, etc.)
+    [SerializeField] private GameObject[] furniturePrefabs;
 
-    private GameObject spawnedObject;
+    // Ya no es privada una sola, ahora simplemente creamos nuevos
+    private GameObject lastSpawnedObject;
     private int currentPrefabIndex = 0;
 
     void Update()
     {
-        // Detectar toque en la pantalla
+        // Toque en celular
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
             {
-                PlaceOrMoveObject(touch.position);
+                if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                {
+                    PlaceNewObject(touch.position);
+                }
             }
         }
-        // Detectar clic en el editor (PC)
+        // Clic en PC (Simulador)
         else if (Input.GetMouseButtonDown(0))
         {
-            // Evitar que el clic atraviese los botones de la UI
             if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
-                PlaceOrMoveObject(Input.mousePosition);
+                PlaceNewObject(Input.mousePosition);
             }
         }
     }
 
-    void PlaceOrMoveObject(Vector2 touchPosition)
+    void PlaceNewObject(Vector2 touchPosition)
     {
         var rayHits = new List<ARRaycastHit>();
-        // Cambiamos a PlaneWithinPolygon para mayor precisión en superficies
         if (raycastManager.Raycast(touchPosition, rayHits, TrackableType.PlaneWithinPolygon))
         {
             Pose hitPose = rayHits[0].pose;
 
-            if (spawnedObject == null)
+            // 1. DESELECCIONAR TODOS LOS ANTERIORES
+            FurnitureController[] allFurniture = Object.FindObjectsByType<FurnitureController>(FindObjectsSortMode.None);
+            foreach (FurnitureController f in allFurniture)
             {
-                // Si no hay objeto, lo crea
-                spawnedObject = Instantiate(furniturePrefabs[currentPrefabIndex], hitPose.position, hitPose.rotation);
+                f.isSelected = false;
             }
-            else
+
+            // 2. INSTANCIAR EL NUEVO
+            lastSpawnedObject = Instantiate(furniturePrefabs[currentPrefabIndex], hitPose.position, hitPose.rotation);
+
+            // 3. SELECCIONAR SOLO EL NUEVO
+            FurnitureController newController = lastSpawnedObject.GetComponent<FurnitureController>();
+            if (newController != null)
             {
-                // Si ya existe, lo mueve a la nueva posición (Requerimiento: "Ajustar objetos")
-                spawnedObject.transform.position = hitPose.position;
+                newController.isSelected = true;
             }
+
+            Debug.Log("Nuevo objeto instanciado y seleccionado: " + lastSpawnedObject.name);
         }
     }
 
-    // Método para botones de la UI (Para cambiar entre Silla, Comedor, etc.)
     public void SwitchFurniture(int index)
     {
         currentPrefabIndex = index;
+        Debug.Log("Mueble seleccionado para la PRÓXIMA instancia: " + index);
     }
 
-    // Método para cambiar color (Requerimiento de la imagen)
-    public void ChangeSelectedColor(Color newColor)
+    // El cambio de color ahora afectará al ÚLTIMO objeto que pusiste
+    public void SetColorToSpawned(string hex)
     {
-        if (spawnedObject != null)
+        if (lastSpawnedObject != null)
         {
-            // Busca el MeshRenderer en el mueble para cambiarle el color
-            var renderer = spawnedObject.GetComponentInChildren<MeshRenderer>();
-            if (renderer != null) renderer.material.color = newColor;
+            var controller = lastSpawnedObject.GetComponent<FurnitureController>();
+            if (controller != null) controller.ChangeColor(hex);
+        }
+    }
+    public void ClearAllFurniture()
+    {
+        // Busca todos los objetos con el script de control y los borra
+        FurnitureController[] allFurniture = Object.FindObjectsByType<FurnitureController>(FindObjectsSortMode.None);
+        foreach (FurnitureController f in allFurniture)
+        {
+            Destroy(f.gameObject);
+        }
+    }
+    public void DeleteLast()
+    {
+        if (lastSpawnedObject != null)
+        {
+            Destroy(lastSpawnedObject);
+        }
+    }
+    public void TogglePlanes(bool show)
+    {
+        foreach (var plane in GetComponent<ARPlaneManager>().trackables)
+        {
+            plane.gameObject.SetActive(show);
         }
     }
 }

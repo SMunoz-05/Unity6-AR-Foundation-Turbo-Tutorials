@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class FurnitureController : MonoBehaviour
 {
+    public bool isSelected = false; // Solo si es true, responderá a los gestos
+
     private Touch touch;
     private Quaternion rotationY;
     private float rotateSpeedModifier = 0.1f;
-
-    // Para Escala
     private float scaleSpeedModifier = 0.01f;
 
     void Update()
     {
-        // --- ROTACIÓN CON UN DEDO (MOVIMIENTO HORIZONTAL) ---
+        // SI NO ESTÁ SELECCIONADO, NO HACE NADA
+        if (!isSelected) return;
+
+        // --- ROTACIÓN CON UN DEDO ---
         if (Input.touchCount == 1)
         {
             touch = Input.GetTouch(0);
@@ -22,7 +25,7 @@ public class FurnitureController : MonoBehaviour
             }
         }
 
-        // --- ESCALA CON DOS DEDOS (PINCH / PINZA) ---
+        // --- ESCALA CON DOS DEDOS ---
         if (Input.touchCount == 2)
         {
             Touch touchZero = Input.GetTouch(0);
@@ -37,24 +40,31 @@ public class FurnitureController : MonoBehaviour
             float difference = currentMagnitude - prevMagnitude;
 
             float newScale = transform.localScale.x + (difference * scaleSpeedModifier);
-            newScale = Mathf.Clamp(newScale, 0.5f, 3.0f); // Límites de tamaño
+            newScale = Mathf.Clamp(newScale, 0.5f, 3.0f);
             transform.localScale = new Vector3(newScale, newScale, newScale);
         }
 
-        // --- PRUEBA EN PC (EDITOR) ---
-        if (Input.GetMouseButton(1)) // Clic derecho para rotar en PC
+        // --- PRUEBA EN PC ---
+        float horizontalInput = Input.GetAxis("Horizontal");
+        if (horizontalInput != 0)
         {
-            transform.Rotate(Vector3.up, -Input.GetAxis("Mouse X") * 5f);
+            transform.Rotate(Vector3.up, -horizontalInput * 100f * Time.deltaTime);
+        }
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll != 0f)
+        {
+            float newScale = transform.localScale.x + (scroll * 0.5f);
+            newScale = Mathf.Clamp(newScale, 0.5f, 3.0f);
+            transform.localScale = new Vector3(newScale, newScale, newScale);
         }
     }
 
-    // MÉTODO PARA EL COLOR (Requerimiento de la imagen)
     public void ChangeColor(string hexColor)
     {
         Color newCol;
         if (ColorUtility.TryParseHtmlString(hexColor, out newCol))
         {
-            // Busca en el mueble y sus hijos el material
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
             foreach (Renderer r in renderers)
             {
